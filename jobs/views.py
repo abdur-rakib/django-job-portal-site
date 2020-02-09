@@ -38,3 +38,38 @@ class SearchView(ListView):
             location__icontains=self.request.GET['location'],
             title__icontains=self.request.GET['position']
         )
+
+
+class JobListView(ListView):
+    model = Job
+    context_object_name = 'jobs'
+    template_name = 'jobs/jobs.html'
+    paginate_by = 5
+
+
+class JobDetailView(DetailView):
+    model = Job
+    template_name = 'jobs/details.html'
+    context_object_name = 'job'
+    pk_url_kwarg = 'id'
+
+    def get_object(self, queryset=None):
+        return super(JobDetailView, self).get_object(queryset=queryset)
+        if obj is None:
+            raise Http404('Job does not exists')
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)
+
+
+class Dashboard(ListView):
+    model = Job
+    template_name = 'jobs/employer/dashboard.html'
+    context_object_name = 'jobs'
+
+    @method_decorator(login_required(login_url=reverse_lazy('accounts:login')))
+    
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(self.request, *args, **kwargs)
+
+    def get_queryset(self):
+        return self.model.objects.filter(user_id=self.request.user.id)

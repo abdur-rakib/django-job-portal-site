@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<div class="row ">
+    <div class="col-md-12 border mt-4 p-4 mdb teal lighten-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card  my-4 p-4">
+                    <div class="card-body text-center">
+                        <h2 class="card-title  text-center">{{ object.title }}</h2>
+                        <h5 class="text-center">At <span class="text-success ml-2 "> {{ object.company_name }}</span>
+                        </h5>
+                        <hr class="myColor" style="width: 250px; border: 1px solid #3F729B;">
+                        <p class=" text-muted"><span><i
+                                    class="fas fa-map-marker-alt mr-2"></i>{{ object.location }}</span>|<span>Posted
+                                {{ object.created_at|timesince }} ago</span>|<span>{% if job.job_type == '1' %}
+                                <span class="badge featured-badge badge-success">Full time</span>
+                                {% elif job.job_type == '2' %}
+                                <span class="badge featured-badge badge-primary">Part time</span>
+                                {% else %}
+                                <span style="color: #ffffff;"
+                                    class="badge featured-badge badge-warning">Internship</span>
+                                {% endif %}</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row mt-4 border justify-content-between  p-5">
+        <div class="col-md-7 mr-auto">
+            <h4 class="h4">Category: {{ object.category }}</h4>
+            <h6 class="text-info">Last Date: {{ object.last_date|date }}</h6 class="text-info">
+                {% if object.salary %}
+                <h6 class="mb-2 text-success">Salary: {{ object.salary }} BDT/month</h6>
+                {% else %}
+                <h6 class="mb-2 text-success">Salary: Negotiable</h6>
+                {% endif %}
+            <blockquote class="blockquote mt-3">
+                <p style="font-size: 14px;">{{ object.description }}</p style="font-size: 14px;">
+                <a class="btn btn-outline-danger btn-md px-5" href="">Apply for this job</a>
+        </div>
+        <div class="col-md-4">
+            <h4 class="h4">About {{ object.company_name }}</h4>
+            <p style="font-size: 14px;">{{ object.company_description }}</p style="font-size: 14px;">
+                <a href="{{ object.website }}">Visit their site</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

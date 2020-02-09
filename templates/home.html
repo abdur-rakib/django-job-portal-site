@@ -54,7 +54,7 @@ Home
                         <img class="card-img-top"
                             src="https://cdn.uconnectlabs.com/wp-content/uploads/sites/5/2017/12/20170301155447.jpg"
                             alt="Card image cap">
-                        <a href="#!">
+                        <a href="{{ job.get_absolute_url }}">
                             <div class="mask rgba-white-slight"></div>
                         </a>
                     </div>
@@ -66,9 +66,9 @@ Home
                         <h4 class="card-title text-center">{{ job.title }}</h4>
                         <!--Text-->
                         <p class="text-muted text-center"><i
-                                class="fas fa-map-marker-alt mx-2"></i>{{ job.location }}{% if job.type == '1' %}
+                                class="fas fa-map-marker-alt mx-2"></i>{{ job.location }}{% if job.job_type == '1' %}
                             <span class="badge featured-badge badge-success">Full time</span>
-                            {% elif job.type == '2' %}
+                            {% elif job.job_type == '2' %}
                             <span class="badge featured-badge badge-primary">Part time</span>
                             {% else %}
                             <span style="color: #ffffff;" class="badge featured-badge badge-warning">Internship</span>
@@ -98,7 +98,7 @@ Home
             <tbody>
                 {% for job in trendings %}
                 <tr>
-                    <th scope="row"><a href="" class="text-primary">{{ job.title }}</a></th>
+                    <th scope="row"><a href="{{ job.get_absolute_url }}" class="text-primary">{{ job.title }}</a></th>
                     <td>{{ job.company_name }}</td>
                     <td>{{ job.location }}</td>
                     <td>{{ job.created_at|timesince }} ago</td>
@@ -115,7 +115,7 @@ Home
     <div class="col-md-12 border px-4 py-5 text-center">
         <h3 class="text-center">Start searching for your new job now!</h3>
         <hr class="" style="width: 450px; border: 1px solid #3F729B;">
-        <button class="btn btn-outline-primary text-center px-5">Explore</button>
+        <a href="{% url 'jobs:jobs' %}" class="btn btn-outline-primary text-center px-5">Explore</a>
     </div>
 </div>
 {% endblock %}

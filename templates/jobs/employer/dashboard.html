@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+<div class="row mt-4">
+    <div class="col-md-12 border px-4 py-5">
+        <h3 class="text-center">DASHBOARD</h3>
+        <hr class="myColor myBorder" style="width: 250px; border: 1px solid #3F729B;">
+        <h5 class="text-center mb-4">All created jobs</h5>
+        <table class="table table-striped border-bottom text-center">
+            <thead>
+                <tr>
+                    <th scope="col">Job title</th>
+                    <th scope="col">Position filled</th>
+                    <th scope="col">Date posted</th>
+                    <th scope="col">Date expiring</th>
+                    <th scope="col">Applicants</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for job in jobs %}
+                <tr class="">
+                    <th scope="row"><a href="{{ job.get_absolute_url }}" class="text-primary">{{ job.title }}</a></th>
+                    <td>{% if job.filled %}
+                        <span class="badge badge-success">Filled</span>
+                    {% else %}
+                        <span class="badge badge-secondary">Not Filled</span>
+                    {% endif %}</td>
+                    <td>{{ job.created_at|date }}</td>
+                    <td>{{ job.last_date|date }}</td>
+                    <td>Applicatnts</td>
+                    <td>
+                        <a class="d-block text-secondary" href="">Edit</a>
+                        {% if job.filled %}
+                        <a class="d-block text-info" href="">Filled</a>
+                        {% else %}
+                        <a class="d-block text-info" href="">Mark as filled</a>
+                        {% endif %}
+                        <a class="d-block text-danger" href="">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+
+{% endblock %}
