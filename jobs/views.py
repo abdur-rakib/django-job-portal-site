@@ -8,6 +8,7 @@ from django.views.generic import ListView, DetailView, CreateView
 
 from .models import *
 
+
 class HomeView(ListView):
     model = Job
     template_name = 'home.html'
@@ -22,5 +23,18 @@ class HomeView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['trendings'] = self.model.objects.filter(created_at__month=timezone.now().month)[:3]
+        context['trendings'] = self.model.objects.filter(
+            created_at__month=timezone.now().month)[:3]
         return context
+
+
+class SearchView(ListView):
+    model = Job
+    template_name = 'jobs/search.html'
+    context_object_name = 'jobs'
+
+    def get_queryset(self):
+        return self.model.objects.filter(
+            location__icontains=self.request.GET['location'],
+            title__icontains=self.request.GET['position']
+        )

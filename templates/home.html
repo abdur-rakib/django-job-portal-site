@@ -11,26 +11,28 @@ Home
                 <div class="card text-center my-4 p-4">
                     <div class="card-body">
                         <h3 class="card-title">Find a job</h3>
-                        <hr class="myColor myBorder" style="width: 250px; border: 1px solid #3F729B;">
-                        <div class="row align-items-center">
-                            <div class="col-md-5">
-                                <div class="md-form">
-                                    <input type="text" id="profession" name="position"
-                                        placeholder="Position you are looking for" class="form-control">
+                        <hr class="myColor" style="width: 250px; border: 1px solid #3F729B;">
+                        <form action="{% url 'jobs:search' %}" method="get">
+                            <div class="row align-items-center">
+                                <div class="col-md-5">
+                                    <div class="md-form">
+                                        <input type="text" id="profession" name="position"
+                                            placeholder="Position you are looking for" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="md-form">
+                                        <input type="text" id="location" name="location"
+                                            placeholder="Any particular location?" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn myColor btn-md text-white">
+                                        <i class="fa fa-search"></i>
+                                    </button>
                                 </div>
                             </div>
-                            <div class="col-md-5">
-                                <div class="md-form">
-                                    <input type="text" id="location" name="location"
-                                        placeholder="Any particular location?" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <button type="submit" class="btn myColor btn-md text-white">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -95,7 +97,7 @@ Home
             </thead>
             <tbody>
                 {% for job in trendings %}
-                <tr >
+                <tr>
                     <th scope="row"><a href="" class="text-primary">{{ job.title }}</a></th>
                     <td>{{ job.company_name }}</td>
                     <td>{{ job.location }}</td>
@@ -107,6 +109,13 @@ Home
         </table>
 
 
+    </div>
+</div>
+<div class="row mt-4  mdb teal lighten-5">
+    <div class="col-md-12 border px-4 py-5 text-center">
+        <h3 class="text-center">Start searching for your new job now!</h3>
+        <hr class="" style="width: 450px; border: 1px solid #3F729B;">
+        <button class="btn btn-outline-primary text-center px-5">Explore</button>
     </div>
 </div>
 {% endblock %}
