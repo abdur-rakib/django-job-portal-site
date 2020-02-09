@@ -25,14 +25,14 @@
 <body>
     <!--Navbar -->
     <nav class="mb-1 navbar navbar-expand-lg navbar-dark myColor">
-        <a class="navbar-brand" href="#">KajChao?</a>
+        <a class="navbar-brand" href="/">KajChao?</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
             aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
+                <li class="nav-item {{ home_page }}">
                     <a class="nav-link" href="#">
                         <i class="fas fa-home"></i> Home
                         <span class="sr-only">(current)</span>
@@ -47,32 +47,32 @@
                         <i class="fas fa-id-card-alt"></i> Contact</a>
                 </li>
                 {% if request.user.is_authenticated %}
-                    {% if request.user.role == 'employee' %}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-user"></i> {{ request.user.last_name }} </a>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-info"
-                            aria-labelledby="navbarDropdownMenuLink-4">
-                            <a class="dropdown-item" href="{% url 'accounts:employee-register' %}">Edit Profile</a>
-                            <a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a>
-                        </div>
-                    </li>
-                    {% else %}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-user"></i> {{ request.user.first_name }} </a>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-info"
-                            aria-labelledby="navbarDropdownMenuLink-4">
-                            <a class="dropdown-item" href="{% url 'accounts:employee-register' %}">Dashboard</a>
-                            <a class="dropdown-item" href="{% url 'accounts:employer-register' %}">Applicants</a>
-                            <a class="dropdown-item" href="{% url 'accounts:employer-register' %}">Post a new job</a>
-                            <a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a>
-                        </div>
-                    </li>
-                    {% endif %}
-                
+                {% if request.user.role == 'employee' %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i> {{ request.user.last_name }} </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-info"
+                        aria-labelledby="navbarDropdownMenuLink-4">
+                        <a class="dropdown-item" href="{% url 'accounts:employee-register' %}">Edit Profile</a>
+                        <a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a>
+                    </div>
+                </li>
+                {% else %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i> {{ request.user.first_name }} </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-info"
+                        aria-labelledby="navbarDropdownMenuLink-4">
+                        <a class="dropdown-item" href="{% url 'accounts:employee-register' %}">Dashboard</a>
+                        <a class="dropdown-item" href="{% url 'accounts:employer-register' %}">Applicants</a>
+                        <a class="dropdown-item" href="{% url 'accounts:employer-register' %}">Post a new job</a>
+                        <a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a>
+                    </div>
+                </li>
+                {% endif %}
+
                 {% else %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
@@ -95,12 +95,24 @@
     <!--/.Navbar -->
 
     <!-- Body -->
+    {% if messages %}
+
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {#            <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>#}
+            {% endfor %}
+
+            {% endif %}
     <div class="container">
-        <div class="row">
+            
             {% block content %}
 
             {% endblock %}
-        </div>
     </div>
     <!-- End body -->
 

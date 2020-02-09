@@ -16,11 +16,11 @@ class RegisterEmployeeView(CreateView):
         'title': 'Register'
     }
 
-    def dispatch(self, request, *args, **kwargs):
-        if self.request.user.is_authenticated:
-            # return HttpResponseRedirect(self.get_success_url())
-            pass
-        return super().dispatch(self.request, *args, **kwargs)
+    # def dispatch(self, request, *args, **kwargs):
+    #     if self.request.user.is_authenticated:
+    #         # return HttpResponseRedirect(self.get_success_url())
+    #         pass
+    #     return super().dispatch(self.request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
 
@@ -46,11 +46,11 @@ class RegisterEmployerView(CreateView):
         'title': 'Register'
     }
 
-    def dispatch(self, request, *args, **kwargs):
-        if self.request.user.is_authenticated:
-            # return HttpResponseRedirect(self.get_success_url())
-            pass
-        return super().dispatch(self.request, *args, **kwargs)
+    # def dispatch(self, request, *args, **kwargs):
+    #     if self.request.user.is_authenticated:
+    #         # return HttpResponseRedirect(self.get_success_url())
+    #         pass
+    #     return super().dispatch(self.request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
 
@@ -105,7 +105,7 @@ class LogoutView(RedirectView):
     """
     Provides users the ability to logout
     """
-    url = '/'
+    url = '/login'
 
     def get(self, request, *args, **kwargs):
         auth.logout(request)
