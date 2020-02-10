@@ -19,6 +19,17 @@
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam aperiam velit cum esse accusantium minus
             eius obcaecati! Modi, minima voluptate. Fugiat cum ipsam possimus voluptatem cupiditate asperiores, vel
             saepe alias.
+
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam aperiam velit cum esse accusantium minus
+            eius obcaecati! Modi, minima voluptate. Fugiat cum ipsam possimus voluptatem cupiditate asperiores, vel
+            saepe alias.
+
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam aperiam velit cum esse accusantium minus
+            eius obcaecati! Modi, minima voluptate. Fugiat cum ipsam possimus voluptatem cupiditate asperiores, vel
+            saepe alias.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam aperiam velit cum esse accusantium minus
+            eius obcaecati! Modi, minima voluptate. Fugiat cum ipsam possimus voluptatem cupiditate asperiores, vel
+            saepe alias.
         </p>
     </div>
     <div class="col-md-5 border p-4 ">
@@ -28,48 +39,8 @@
                 contact us directly. Our team will come back to you within
                 a matter of hours to help you.</p>
             <form action="" method="POST">
-
                 {% csrf_token %}
-                <!-- {{ form|crispy }} -->
-
-                <!--Grid row-->
-                <div class="row">
-
-                    <!--Grid column-->
-                    <div class="col-md-6">
-                        <div class="md-form mb-0">
-                            {{ form.name }}
-                            <label for="name" class="">Your name</label>
-                        </div>
-                    </div>
-                    <!--Grid column-->
-
-                    <!--Grid column-->
-                    <div class="col-md-6">
-                        <div class="md-form mb-0">
-                            {{ form.email }}
-                            <label for="email" class="">Your email</label>
-                        </div>
-                    </div>
-                    <!--Grid column-->
-
-                </div>
-                <!--Grid row-->
-
-                <!--Grid row-->
-                <div class="row">
-
-                    <!--Grid column-->
-                    <div class="col-md-12">
-
-                        <div class="md-form">
-                            {{ form.messages }}
-                            <label for="message">Your message</label>
-                        </div>
-
-                    </div>
-                </div>
-                <!--Grid row-->
+                {{ form|crispy }}
                 <input type="submit" class="btn btn-md" style="background-color: #3F729B; color: white;" value="Send">
             </form>
     </div>

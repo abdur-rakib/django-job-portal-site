@@ -202,9 +202,13 @@ class AboutView(CreateView):
     model = About
     template_name = 'about.html'
     form_class = AboutForm
-    extra_context = {
-        'about_page': 'active'
-    }
+
+    def get_context_data(self, **kwargs):
+        
+        return super().get_context_data(**kwargs)
+        context['about_page'] = 'active'
+        return context
+
 
     def get(self, request, *args, **kwargs):
         context = {'form': AboutForm()}
