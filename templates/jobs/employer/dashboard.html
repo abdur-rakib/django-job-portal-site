@@ -33,13 +33,12 @@ Dashboard
                     <td>{{ job.last_date|date }}</td>
                     <td>Applicatnts</td>
                     <td>
-                        <a class="d-block text-secondary" href="">Edit</a>
                         {% if job.filled %}
-                        <a class="d-block text-info" href="">Filled</a>
+                        <a class="d-block text-info" href="{% url 'jobs:job-mark-filled' job.id %}">Filled</a>
                         {% else %}
-                        <a class="d-block text-info" href="">Mark as filled</a>
+                        <a class="d-block text-info" href="{% url 'jobs:job-mark-filled' job.id %}">Mark as filled</a>
                         {% endif %}
-                        <a class="d-block text-danger" href="">Delete</a>
+                        <a class="d-block text-danger" href="{% url 'jobs:job-delete' job.id %}">Delete</a>
                     </td>
                 </tr>
                 {% endfor %}

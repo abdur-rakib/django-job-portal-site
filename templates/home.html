@@ -63,7 +63,7 @@ Home
                     <div class="card-body">
 
                         <!--Title-->
-                        <h4 class="card-title text-center">{{ job.title }}</h4>
+                        <h4 class="card-title text-center"><a href="{{ job.get_absolute_url }}">{{ job.title }}</a></h4>
                         <!--Text-->
                         <p class="text-muted text-center"><i
                                 class="fas fa-map-marker-alt mx-2"></i>{{ job.location }}{% if job.job_type == '1' %}

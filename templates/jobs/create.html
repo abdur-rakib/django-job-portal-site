@@ -46,10 +46,7 @@ Post a new job
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-12 form-group">
-                            <label for="salary">Salary(Leave empty if it's negotiable)</label>
-                            <input id="salary" name="salary" type="number"required='false' class="form-control" value="{{ form.salary.value|default_if_none:"" }}">
-                        </div>
+                        
                     </div>
                     <div class="row">
                         <div class="col-lg-6 form-group">
@@ -68,7 +65,7 @@ Post a new job
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-12 form-group">
+                        <div class="col-lg-6 form-group">
                             <label for="category">Category</label>
                             <select id="category" name="category" class="form-control select2">
                                 <option value="web-design" {% if form.category.value == "web-design" %} selected {% endif %}>Web design</option>
@@ -78,6 +75,10 @@ Post a new job
                                 <option value="support" {% if form.category.value == "support" %} selected {% endif %}>Support</option>
                                 <option value="android" {% if form.category.value == "android" %} selected {% endif %}>Android</option>
                             </select>
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <label for="salary">Salary(Leave empty if it's negotiable)</label>
+                            <input id="salary" name="salary" type="number"required='false' class="form-control" value="{{ form.salary.value|default_if_none:"" }}">
                         </div>
                     </div>
                     <div class="row">
@@ -103,7 +104,7 @@ Post a new job
                     <div class="row">
                         <div class="col-lg-12 form-group">
                             <label for="company_name">Company name</label>
-                            <input id="company_name" name="company_name" type="text" class="form-control" value="{{ form.company_name.value|default_if_none:"" }}">
+                            <input id="company_name" name="company_name" type="text" class="form-control" readonly value="{{ request.user.first_name }}">
                         </div>
                     </div>
                     <div class="row">
@@ -130,7 +131,7 @@ Post a new job
                     <div class="row">
                         <div class="col-lg-12 text-center">
                             <hr>
-                            <button type="submit" class="btn btn-outline-white-primary"><i class="fa fa-magic"></i>
+                            <button type="submit" class="btn btn-outline-primary"><i class="fa fa-magic"></i>
                                 Save and publish
                             </button>
                         </div>

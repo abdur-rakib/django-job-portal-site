@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+<div class="row mt-4">
+    <div class="col-md-12 border px-4 py-5">
+        <h3 class="text-center">All Applicants</h3>
+        <hr class="myColor myBorder" style="width: 250px; border: 1px solid #3F729B;">
+        <table class="table table-striped border-bottom text-center">
+            <thead>
+                <tr>
+                    <th scope="col">Applicant</th>
+                    <th scope="col">Job</th>
+                    <th scope="col">Date posted</th>
+                    <th scope="col">Date expiring</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for applicant in applicants %}
+                <tr class="">
+                    <th scope="row">{{ applicant.user.get_full_name }}</th>
+                    <td>{{ applicant.job }}</td>
+                    <td>{{ applicant.job.created_at|date }}</td>
+                    <td>{{ applicant.job.last_date|date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
