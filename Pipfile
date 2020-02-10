@@ -8,6 +8,8 @@ autopep8 = "*"
 
 [packages]
 django = "*"
+django-crispy-forms = "*"
+django-tempus-dominus = "*"
 
 [requires]
 python_version = "3.8"

@@ -1,12 +1,14 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponseRedirect
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView, CreateView
 
 from .models import *
+from .forms import *
 
 
 class HomeView(ListView):
@@ -67,9 +69,29 @@ class Dashboard(ListView):
     context_object_name = 'jobs'
 
     @method_decorator(login_required(login_url=reverse_lazy('accounts:login')))
-    
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(self.request, *args, **kwargs)
 
     def get_queryset(self):
         return self.model.objects.filter(user_id=self.request.user.id)
+
+
+class JobCreateView(CreateView):
+
+    def get(self, request, *args, **kwargs):
+        context = {'form': CreateJobForm()}
+        return render(request, 'jobs/create.html', context)
+    
+    def post(self, request, *args, **kwargs):
+        form = CreateJobForm(request.POST)
+
+        if form.is_valid():
+            job = form.save(commit=False)
+            job.user = self.request.user
+            job.company_name = self.request.user.first_name
+            job.save()
+            messages.success(request, 'Job posted successfully')
+            return HttpResponseRedirect(reverse_lazy('jobs:employer-dashboard'))
+        return render(request, 'jobs/create.html', {'form': form})
+
+

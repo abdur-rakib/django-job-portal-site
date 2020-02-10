@@ -24,6 +24,9 @@ class Job(models.Model):
     filled = models.BooleanField(default=False)
     salary = models.IntegerField(default=0, blank=True)
 
+    class Meta:
+        ordering = ('-created_at', )
+
     def __str__(self):
         return self.title
     

@@ -14,7 +14,11 @@
     <!-- Material Design Bootstrap -->
     <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+
+    
     <title>{% block title %}{% endblock title %}</title>
+    {{ form.media }}
     <style>
         body {
             font-family: 'Open Sans', sans-serif;
@@ -64,7 +68,7 @@
                             aria-labelledby="navbarDropdownMenuLink-4">
                             <a class="dropdown-item" href="{% url 'jobs:employer-dashboard' %}">Dashboard</a>
                             <a class="dropdown-item" href="{% url 'accounts:employer-register' %}">Applicants</a>
-                            <a class="dropdown-item" href="{% url 'accounts:employer-register' %}">Post a new job</a>
+                            <a class="dropdown-item" href="{% url 'jobs:employer-jobs-create' %}">Post a new job</a>
                             <a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a>
                         </div>
                     </li>
@@ -112,19 +116,20 @@
             {% endblock %}
         </div>
         <!-- End body -->
-        <!--Footer-->
-        <footer class="page-footer text-center font-small unique-color mt-4 wow fadeIn">
-
-            <!--Copyright-->
-            <div class="footer-copyright py-3">
-                © 2020 Copyright:
-                <a href="" target="_blank"> Abdur Rakib </a>
-            </div>
-            <!--/.Copyright-->
-
-        </footer>
-        <!--/.Footer-->
+        
     </div>
+    <!--Footer-->
+    <footer class="page-footer text-center font-small unique-color mt-4 wow fadeIn">
+
+        <!--Copyright-->
+        <div class="footer-copyright py-3">
+            © 2020 Copyright:
+            <a href="" target="_blank"> Abdur Rakib </a>
+        </div>
+        <!--/.Copyright-->
+
+    </footer>
+    <!--/.Footer-->
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- Bootstrap tooltips -->

@@ -32,9 +32,11 @@ INSTALLED_APPS = [
     #Local
     'jobs.apps.JobsConfig',
 
-    
-
+    'crispy_forms',
+    'tempus_dominus',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
