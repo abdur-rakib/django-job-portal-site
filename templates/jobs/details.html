@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load is_already_applied %}
 {% block title %}
 Home
 {% endblock %}
@@ -42,17 +43,18 @@ Home
             {% endif %}
             <blockquote class="blockquote mt-3">
                 <p style="font-size: 14px;">{{ object.description }}</p style="font-size: 14px;">
-                <!-- {% if is_applied %}
-                <input type="button" class="btn btn-outline-danger btn-md px-5" value="Already applied" />
-                {% else %} -->
+
                 {% if request.user.role == 'employee' %}
+                {% if is_applied %}
+                <input type="button" class="btn btn-outline-danger btn-md px-5" value="Already applied" />
+                {% else %}
                 <form action="{% url 'jobs:apply-job' job.id %}" method="post">
                     {% csrf_token %}
                     <input type="hidden" name="job" value="{{ job.id }}">
                     <input type="submit" class="btn btn-outline-danger btn-md px-5" value="Apply for this job" />
                 </form>
                 {% endif %}
-                <!-- {% endif %} -->
+                {% endif %}
         </div>
         <div class="col-md-4">
             <h4 class="h4">About {{ object.company_name }}</h4>

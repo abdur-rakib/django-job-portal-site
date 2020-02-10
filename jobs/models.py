@@ -43,3 +43,11 @@ class Applicant(models.Model):
 
     def __str__(self):
         return self.user.get_full_name()
+    
+class About(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField(max_length=60)
+    messages = models.TextField()
+
+    def __str__(self):
+        return self.name

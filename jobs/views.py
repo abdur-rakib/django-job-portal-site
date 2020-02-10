@@ -152,11 +152,8 @@ class ApplyJobView(CreateView):
     def get_success_url(self):
         return reverse_lazy('jobs:jobs-detail', kwargs={'id': self.kwargs['job_id']})
 
-    # def get_form_kwargs(self):
-    #     kwargs = super(ApplyJobView, self).get_form_kwargs()
-    #     print(kwargs)
-    #     kwargs['job'] = 1
-    #     return kwargs
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
 
     def form_valid(self, form):
         # check if user already applied
@@ -199,3 +196,26 @@ def delete(request, job_id=None):
         print(e.message)
         return HttpResponseRedirect(reverse_lazy('jobs:employer-dashboard'))
     return HttpResponseRedirect(reverse_lazy('jobs:employer-dashboard'))
+
+
+class AboutView(CreateView):
+    model = About
+    template_name = 'about.html'
+    form_class = AboutForm
+    extra_context = {
+        'about_page': 'active'
+    }
+
+    def get(self, request, *args, **kwargs):
+        context = {'form': AboutForm()}
+        return render(request, 'about.html', context)
+    
+    def post(self, request, *args, **kwargs):
+        form = AboutForm(request.POST)
+
+        if form.is_valid():
+            contact = form.save(commit=False)
+            contact.save()
+            messages.success(request, 'Sent message to the admin successfully')
+            return HttpResponseRedirect(reverse_lazy('jobs:about'))
+        return render(request, 'about.html', {'form': form})
